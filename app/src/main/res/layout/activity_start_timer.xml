@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/activity_start_timer"
     android:background="@android:color/holo_green_light"
     android:layout_height="match_parent">
 
@@ -21,6 +22,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textSize="35dp"
+        android:textAlignment="center"
         app:layout_constraintVertical_bias="0.499" />
 
     <TextView
@@ -37,6 +40,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
+        android:textSize="35dp"
+        android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
 
@@ -49,6 +54,7 @@
         android:layout_marginTop="80dp"
         android:text="Reset"
         android:background="@android:color/darker_gray"
+        android:onClick="onResetClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@android:color/black"
@@ -62,6 +68,7 @@
         android:layout_marginBottom="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onStopClick"
         android:text="Stop"
         android:textColor="@android:color/black"
         android:textSize="20dp"
@@ -82,7 +89,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="35dp"
+        android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/minsTimer"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
+
+
 </android.support.constraint.ConstraintLayout>

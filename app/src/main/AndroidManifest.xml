@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CountDownActivity"></activity>
-        <activity android:name=".StartTimerActivity"></activity>
+        <activity android:name=".CountDownActivity" />
+        <activity android:name=".StartTimerActivity" />
+        <activity android:name=".FinishActivity"></activity>
     </application>
 
 </manifest>
