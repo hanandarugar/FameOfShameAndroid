@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
+    android:background="@drawable/backgroud_gradient"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     tools:context="com.kaamchor.android.fameofshame.CountDownActivity">
 
-    <NumberPicker
+
+    <com.shawnlin.numberpicker.NumberPicker
         android:id="@+id/hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,47 +18,69 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:descendantFocusability="blocksDescendants"
+        android:scaleX="1.15"
+        android:scaleY="1.15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385"></NumberPicker>
+        app:layout_constraintVertical_bias="0.385"
+        app:np_dividerColor="@android:color/white"
+        app:np_dividerThickness="3dp"
+        app:np_fadingEdgeEnabled="false"
+        app:np_selectedTextSize="35dp"
+        app:np_selectedTextColor="@android:color/white"
+        app:np_textColor="@android:color/darker_gray"></com.shawnlin.numberpicker.NumberPicker>
 
-    <NumberPicker
+
+    <com.shawnlin.numberpicker.NumberPicker
         android:id="@+id/mins"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="176dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:descendantFocusability="blocksDescendants"
+        android:scaleX="1.15"
+        android:scaleY="1.15"
+        app:np_selectedTextSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385"></NumberPicker>
+        app:layout_constraintVertical_bias="0.385"
+        app:np_dividerColor="@android:color/white"
+        app:np_dividerThickness="3dp"
+        app:np_fadingEdgeEnabled="false"
+        app:np_selectedTextColor="@android:color/white"
+        app:np_textColor="@android:color/darker_gray"></com.shawnlin.numberpicker.NumberPicker>
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/startTimerButton"
-        android:layout_width="131dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
         android:onClick="onStartTimerClick"
-        android:text="Start"
-        android:textAllCaps="true"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.842" />
+        app:layout_constraintVertical_bias="0.842"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="2dp"
+        fancy:fb_defaultColor="@android:color/transparent"
+        fancy:fb_focusColor="#2469a0"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Start Timer"
+        fancy:fb_textColor="@android:color/white"
+        fancy:fb_textSize="20dp" />
+
 </android.support.constraint.ConstraintLayout>
