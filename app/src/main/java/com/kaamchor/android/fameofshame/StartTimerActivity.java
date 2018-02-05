@@ -74,7 +74,6 @@ public class StartTimerActivity extends CountDownActivity {
 
     @Override
     protected void onResume() {
-        Log.wtf("StartTimeActivity,","onResum called");
         super.onResume();
         Intent intent = getIntent();
         if (intent.getExtras().containsKey("currentHour") || intent.getExtras().containsKey("currentMin") || intent.getExtras().containsKey("currentSec") ){

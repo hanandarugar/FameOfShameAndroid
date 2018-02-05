@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/activity_start_timer"
-    android:background="@android:color/holo_green_light"
+    android:background="@drawable/backgroud_gradient"
     android:layout_height="match_parent">
 
 
