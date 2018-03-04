@@ -26,11 +26,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.385"
-        app:np_dividerColor="@android:color/white"
+        app:np_dividerColor="#FF9300"
         app:np_dividerThickness="3dp"
         app:np_fadingEdgeEnabled="false"
         app:np_selectedTextSize="35dp"
-        app:np_selectedTextColor="@android:color/white"
+        app:np_selectedTextColor="#FF9300"
         app:np_textColor="@android:color/darker_gray"></com.shawnlin.numberpicker.NumberPicker>
 
 
@@ -52,10 +52,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.385"
-        app:np_dividerColor="@android:color/white"
+        app:np_dividerColor="#FF9300"
         app:np_dividerThickness="3dp"
         app:np_fadingEdgeEnabled="false"
-        app:np_selectedTextColor="@android:color/white"
+        app:np_selectedTextColor="#FF9300"
         app:np_textColor="@android:color/darker_gray"></com.shawnlin.numberpicker.NumberPicker>
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -73,14 +73,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.842"
-        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderColor="#FF9300"
         fancy:fb_borderWidth="2dp"
         fancy:fb_defaultColor="@android:color/transparent"
-        fancy:fb_focusColor="#2469a0"
+        fancy:fb_focusColor="#FF9300"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="30dp"
         fancy:fb_text="Start Timer"
-        fancy:fb_textColor="@android:color/white"
+        fancy:fb_textColor="#FF9300"
         fancy:fb_textSize="20dp" />
 
 </android.support.constraint.ConstraintLayout>

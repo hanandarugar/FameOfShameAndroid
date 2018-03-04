@@ -49,8 +49,10 @@ public class CountDownActivity extends AppCompatActivity {
             toast.show();
         } else {
             Intent countDownActivityIntent = new Intent(this, StartTimerActivity.class);
+          //  Intent countDownActivityIntent = new Intent(this, ProgressTimerActivity.class);
             countDownActivityIntent.putExtra("Hour", hour.getValue());
             countDownActivityIntent.putExtra("Mins", mins.getValue());
+            Log.wtf("countDown", "Started Progresstimer");
             startActivity(countDownActivityIntent);
         }
     }

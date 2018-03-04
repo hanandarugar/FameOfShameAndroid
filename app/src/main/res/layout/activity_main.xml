@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroud_gradient"
     android:layout_height="match_parent"
     tools:context="com.kaamchor.android.fameofshame.MainActivity"
-    android:background="@drawable/backgroud_gradient">
-
+    >
 
     <TextView
         android:id="@+id/setTimer"
@@ -17,9 +17,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:text="Touch me to turn me on"
+        android:text="Dream big, \n work hard, \n stay FOCUSED."
         android:textAlignment="center"
-        android:textColor="@android:color/white"
+        android:textColor="#FF9300"
         android:textSize="40dp"
         android:fontFamily="@font/segoeuisl"
         app:layout_constraintBottom_toBottomOf="parent"

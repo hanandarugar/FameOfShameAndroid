@@ -17,7 +17,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
+        android:textColor="#FF9300"
         android:textSize="40dp"
         android:fontFamily="@font/segoeuisl"
         app:layout_constraintBottom_toBottomOf="parent"

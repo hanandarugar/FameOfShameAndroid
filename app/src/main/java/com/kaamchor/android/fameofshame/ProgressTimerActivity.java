@@ -1,6 +1,5 @@
 package com.kaamchor.android.fameofshame;
 
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.content.Context;
 import android.graphics.Color;
@@ -11,11 +10,12 @@ import android.os.CountDownTimer;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.app.NotificationManager;
 import android.os.PowerManager;
+
+import static java.lang.Math.*;
 
 
 /**
@@ -23,20 +23,13 @@ import android.os.PowerManager;
  */
 
 
-public class StartTimerActivity extends CountDownActivity {
+public class ProgressTimerActivity extends CountDownActivity {
 
-    private TextView Hour, Minute,Second;
-    private TextView tvEventStart;
-    private int hr, mn;
     private boolean isTimerRunning;
     private CountDownTimer cdTimer;
-    private long hours;
-    private long minutes;
-    private long seconds;
-    private long currentHour;
-    private long currentMin;
-    private long currentSec;
-    private long timerResume;
+    private long currentTimeInMillisec;
+    private long hr,mn;
+    private int timerResume = 0;
     private boolean phoneCall = false;
     private boolean isReset = false;
     private String stringTime;
@@ -46,9 +39,10 @@ public class StartTimerActivity extends CountDownActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_timer);
+        setContentView(R.layout.activity_progress_timer);
         Intent intent = getIntent();
         initTimer();
+        Log.wtf("progress on create", "on creayte");
         if(intent.getExtras().containsKey("Hour") || intent.getExtras().containsKey("Mins")) {
             hr = getIntent().getExtras().getInt("Hour");
             mn = getIntent().getExtras().getInt("Mins");
@@ -58,47 +52,33 @@ public class StartTimerActivity extends CountDownActivity {
 
     @Override
     protected void onStart() {
-        Log.wtf("StartTimeActivity,","onStart called");
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-//        Log.wtf("StartTimeActivity,", "value of timeInms onSTop called" + timeInMs);
-//        if (timeInMs > 0) {
-//            countDownStart();
-//        } else {
-            Log.wtf("StartTimeActivity,", "onSTop called");
-            super.onStop();
-//        }
+        super.onStop();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
-        if (intent.getExtras().containsKey("currentHour") || intent.getExtras().containsKey("currentMin") || intent.getExtras().containsKey("currentSec") ){
-            currentHour = intent.getLongExtra("currentHour",0);
-            currentMin = intent.getLongExtra("currentMin", 0);
-            currentSec = intent.getLongExtra("currentSec", 0);
+        if (intent.getExtras().containsKey("CurrentTimeInMillisec")){
+            currentTimeInMillisec = intent.getLongExtra("CurrentTimeInMillisec",0);
             timerResume = 1;
             countDownStart();
         }
     }
 
     public void initTimer(){
-        Hour = (TextView) findViewById(R.id.hourTimer);
-        Minute = (TextView) findViewById(R.id.minsTimer);
-        Second = (TextView) findViewById(R.id.secTimer);
-        tvEventStart = (TextView) findViewById(R.id.tveventStart);
         progressBar = findViewById(R.id.progressBar);
-
     }
 
     public void countDownStart() {
         final long diff;
         if(timerResume == 1){
-            diff = (((currentHour * 60) + currentMin) * 60 + currentSec) *1000;
+            diff = currentTimeInMillisec;
         }else {
             diff = ((hr * 60) + mn) * 60 * 1000;
         }
@@ -108,28 +88,22 @@ public class StartTimerActivity extends CountDownActivity {
 
             public void onTick(long millisUntilFinished) {
                 wl.acquire();
-                timeInPercentage = ((millisUntilFinished * 100) / diff);
-                hours = millisUntilFinished / (1000 * 60 *60);
-                long tempTime = millisUntilFinished;
-                millisUntilFinished -= hours * (60 * 60 * 1000);
-                minutes = millisUntilFinished / (1000 * 60);
-                millisUntilFinished -= minutes * (60 * 1000);
-                seconds = millisUntilFinished / 1000;
-                stringTime = String.valueOf(100 - timeInPercentage);
-                progressBar.setDonut_progress(stringTime);
-                progressBar.invalidate();
-                currentHour = hours;
-                currentMin = minutes;
-                currentSec = seconds;
                 isTimerRunning = true;
-                Hour.setText("" + String.format("%02d", hours) + " :");
-                Minute.setText("" + String.format("%02d", minutes) + " :");
-                Second.setText("" + String.format("%02d", seconds));
+                Log.wtf("millisec", String.valueOf(millisUntilFinished));
+                currentTimeInMillisec = millisUntilFinished;
+                Log.wtf("diff", String.valueOf(diff));
+                timeInPercentage = ((millisUntilFinished * 100) / diff);
+                Log.wtf("timeInPercentage", String.valueOf(timeInPercentage));
+                stringTime = String.valueOf(timeInPercentage);
+                Log.wtf("percentage", stringTime);
+                progressBar.setDonut_progress(stringTime);
+                progressBar.setText(stringTime + "%");
+                progressBar.invalidate();
             }
 
             public void onFinish() {
 
-                Intent finishActivityIntent = new Intent(StartTimerActivity.this,FinishActivity.class);
+                Intent finishActivityIntent = new Intent(ProgressTimerActivity.this,FinishActivity.class);
                 isTimerRunning = false;
                 startActivity(finishActivityIntent);
                 wl.release();
@@ -160,22 +134,17 @@ public class StartTimerActivity extends CountDownActivity {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_stat_access_alarms)
-                        .setContentTitle("Anti-procrastinator")
-                        .setContentText(shameNotification.getRemarks())
-                .setStyle(new NotificationCompat.BigTextStyle());
-                notificationManager.notify(001, mBuilder.build());
+                        .setContentTitle("My notification")
+                        .setContentText(shameNotification.getRemarks());
+        notificationManager.notify(001, mBuilder.build());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.wtf("StartTimer","onPause called");
         if (((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE)).getCallState() == TelephonyManager.CALL_STATE_RINGING) {
-            Log.wtf("StartTimer","call state ringing branch");
-            Intent myServiceIntent = new Intent(StartTimerActivity.this,MyService.class);
-            myServiceIntent.putExtra("currentHour",currentHour);
-            myServiceIntent.putExtra("currentMin",currentMin);
-            myServiceIntent.putExtra("currentSec",currentSec);
+            Intent myServiceIntent = new Intent(ProgressTimerActivity.this,MyService.class);
+            myServiceIntent.putExtra("CurrentTimeInMillisec",currentTimeInMillisec);
             phoneCall = true;
             cdTimer.cancel();
             finish();
@@ -183,22 +152,18 @@ public class StartTimerActivity extends CountDownActivity {
 
         }
         else if (((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE)).getCallState() == TelephonyManager.CALL_STATE_IDLE && phoneCall == true) {
-            Log.wtf("StartTimer","call state idle branch");
             long diff;
-            diff = (((currentHour * 60) + currentMin) * 60 + currentSec) *1000;
+            diff = currentTimeInMillisec;
             phoneCall = false;
             cdTimer.onTick(diff);
         }
         else if (isTimerRunning == true){
             if (isReset == false) {
-                Log.wtf("StartTimer", "start new activity branch");
-
                 if (cdTimer != null) {
                     cdTimer.cancel();
                 }
-                Log.wtf("sound", "about to play shame");
                 Intent mainActivityIntent = new Intent(this, MainActivity.class);
-                MediaPlayer shame = MediaPlayer.create(StartTimerActivity.this, R.raw.shamebell);
+                MediaPlayer shame = MediaPlayer.create(ProgressTimerActivity.this, R.raw.shamebell);
                 shame.start();
                 sendNotification();
                 startActivity(mainActivityIntent);
@@ -221,3 +186,4 @@ public class StartTimerActivity extends CountDownActivity {
     }
 
 }
+

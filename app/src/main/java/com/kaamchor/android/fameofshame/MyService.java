@@ -36,6 +36,11 @@ public class MyService extends Service {
         startTimerIntent.putExtra("currentMin", currentMin);
         startTimerIntent.putExtra("currentSec", currentSec);
         getApplicationContext().startActivity(startTimerIntent);
+
+     //   Intent progressTimerIntent = new Intent(this, ProgressTimerActivity.class);
+    //    long currentTimeInMillisec = intent.getLongExtra("currentTimeInMillisec", 0);
+    //    progressTimerIntent.putExtra("currentTimeInMillisec", currentTimeInMillisec);
+   //     getApplicationContext().startActivity(progressTimerIntent);
     }
 
     @Override
