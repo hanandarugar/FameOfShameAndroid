@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FameOfShame</string>
+    <string name="title_activity_progress_timer">ProgressTimerActivity</string>
 </resources>
